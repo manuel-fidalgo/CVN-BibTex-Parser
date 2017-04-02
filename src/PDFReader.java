@@ -19,7 +19,7 @@ public class PDFReader {
 	private final static String PUBLICATIONS_END_FLAG_0  = "I+D+i y participación en comités científicos";
 	private final static String PUBLICATIONS_END_FLAG_1  = "Trabajos presentados en congresos nacionales o internacionales";
 
-	private final static Pattern PATTERN_STARTS_WITH_NUMBER = Pattern.compile("^[0-9] |^[0-9][0-9] |^[0-9][0-9][0-9] ");
+	
 	
 	private Publicacion[] publicaciones;
 
@@ -63,12 +63,12 @@ public class PDFReader {
 				publicaciones = new Publicacion[array_publicaciones.length];
 				
 				for (int i = 0; i < array_publicaciones.length; i++) {
-					publicaciones[i] = new Publicacion(array_publicaciones[i]);
+					publicaciones[i] = new Publicacion(array_publicaciones[i],i);
 					publicaciones[i].setAutorPrincipal(p.getNombre());
 					publicaciones[i].cleanData();
 					
 					writer.print(publicaciones[i].generateBibTexString());
-					if(GlobalConfig.DEBUG) System.out.print(array_publicaciones[i]+"\n---\n");
+					if(GlobalConfig.DEBUG) System.out.print(publicaciones[i].generateBibTexString()+"\n---\n");
 				}
 				writer.close();
 			}

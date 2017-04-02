@@ -5,6 +5,7 @@ public class Persona {
 	public String curriculum_code;
 	public String firtsPageContent;
 	
+	//Toma el contenido de la primera pagina y almacena todos sus datos.
 	public Persona(String fstPage){
 		firtsPageContent = fstPage;
 		String[] lines = firtsPageContent.split("\n");
