@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="Resources"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="C:/Users/Manuel/Downloads/commons-logging-1.2/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Manuel/Downloads/commons-logging-1.2/commons-logging-1.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Manuel/Downloads/pdfbox-2.0.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Manuel/Downloads/pdfbox-debugger-2.0.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Manuel/Downloads/pdfbox-tools-2.0.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Manuel/Downloads/preflight-2.0.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Manuel/Downloads/xmpbox-2.0.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Manuel/Downloads/fontbox-2.0.5.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -49,14 +49,17 @@ public class Publicacion {
 	
 	private final static String ISBN_index = "ISBN";
 	private final static String ISSN_index = "ISSN";
-	private final static String Paginas_index = "pp. ";
+	private final static String Paginas_index = " pp. ";
 	
-	
-	private final static Pattern PAGES_PATTERN = Pattern.compile(" ([0-9][0-9][0-9]|[0-9][0-9]|[0-9]) +- +([0-9][0-9][0-9]|[0-9][0-9]|[0-9])");
+	//No soporta paginas mayores a 9999.
+	private final static Pattern PAGES_PATTERN = Pattern.compile(" ([0-9][0-9]|[0-9][0-9]|[0-9][0-9][0-9]|[0-9][0-9]|[0-9]) +- +([0-9][0-9]|[0-9][0-9]|[0-9][0-9][0-9]|[0-9][0-9]|[0-9])");
 	private final static Pattern YEAR_PATTERN = Pattern.compile("[1-2][0-9][0-9][0-9]");
 	private final static Pattern ISSN_PATTERN = Pattern.compile("ISSN ....-....");
-	private final static Pattern ISBN_PATTERN = Pattern.compile("ISBN .{17}");//Consta de 13 caracteres y 4 -
-	//BUG CON LOS ISBN DE 10 digitos
+	private final static Pattern ISBN_PATTERN = Pattern.compile("ISBN ([0-9][0-9][0-9][0-9]|[0-9][0-9][0-9]|[0-9][0-9]|[0-9])-"
+			 												 		+"([0-9][0-9][0-9][0-9]|[0-9][0-9][0-9]|[0-9][0-9]|[0-9])-"
+			 												 		+"([0-9][0-9][0-9][0-9]|[0-9][0-9][0-9]|[0-9][0-9]|[0-9])-"
+			 												 		+"([0-9][0-9][0-9][0-9]|[0-9][0-9][0-9]|[0-9][0-9]|[0-9])");
+	//ISBN consta de grupos de 4 grupos de numeros separados por guion, cada grupo conteiene entre 1 y 4 digitos
 	
 	int idex_publicacion; //indice en el array.
 	int numero_publicacion; //numero que aparece delante de cada publicacion
@@ -139,7 +142,7 @@ public class Publicacion {
 			if(m.find()){
 				paginas = m.group();
 			}else{
-				System.err.println("Error econtrado el numero de paginas");
+				if(GlobalConfig.SHOW_ERROR_LOG) System.err.println("Error econtrado el numero de paginas");
 			}
 			cadena_contenido = cadena_contenido.substring(0,pages_index);
 		}

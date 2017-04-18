@@ -142,3 +142,10 @@ public class PDFReader {
 		return publicaciones;
 	}
 }
+
+class GlobalConfig {
+	public static final boolean DEBUG = true;
+	public static final boolean SHOW_ERROR_LOG = false;
+}
+
+
