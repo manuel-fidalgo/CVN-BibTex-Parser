@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="C:/Users/Manuel/Downloads/preflight-2.0.5.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Manuel/Downloads/xmpbox-2.0.5.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Manuel/Downloads/fontbox-2.0.5.jar"/>
+	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

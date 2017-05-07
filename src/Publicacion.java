@@ -152,7 +152,7 @@ public class Publicacion {
 			titulo = titulo.substring(0,titulo.length()-1);
 		}
 	}
-	public String generateBibTexRow(String field, String content){
+	protected String generateBibTexRow(String field, String content){
 		return "\t"+field+"={"+content+"},\n";
 	}
 
@@ -170,7 +170,7 @@ public class Publicacion {
 		if(ISBN!=null)    builder.append(generateBibTexRow("isbn", ISBN));
 		if(ISSN!=null)    builder.append(generateBibTexRow("issn", ISSN));
 		
-		builder.append("}");
+		builder.append("}\n");
 		return builder.toString();
 	}
 	
