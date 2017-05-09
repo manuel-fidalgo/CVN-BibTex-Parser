@@ -190,9 +190,10 @@ public class MainWindow extends JFrame {
 		JButton Autor = new JButton("Autor/Autores");
 		Autor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				insertStringWhereCaret("title={ },\n");
+				insertStringWhereCaret("author={ },\n");
 			}
 		});
+		Autor.setToolTipText("Varios autores deben separarse mediante la palabra and");
 		panel.add(Autor);
 		
 		JButton Fechas = new JButton("Fechas");
@@ -249,7 +250,7 @@ public class MainWindow extends JFrame {
 		JButton articulo = new JButton("Nuevo articulo");
 		articulo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				insertStringWhereCaret("%Trabajo añadido a mano\n@article{CVN_ORCID,\n");
+				insertStringWhereCaret("%Trabajo añadido a mano\n@article{CVN_ORCID,\n}");
 			}
 		});
 		panel.add(articulo);
@@ -257,7 +258,7 @@ public class MainWindow extends JFrame {
 		JButton conferencia = new JButton("Nueva conferencia");
 		conferencia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				insertStringWhereCaret("%Trabajo añadido a mano\n@conference{CVN_ORCID,\n");
+				insertStringWhereCaret("%Trabajo añadido a mano\n@conference{CVN_ORCID,\n}");
 			}
 		});
 		panel.add(conferencia);
