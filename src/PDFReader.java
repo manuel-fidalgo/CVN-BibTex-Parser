@@ -162,7 +162,7 @@ public class PDFReader {
 			init_index = congresos.indexOf("\n"+obra_index+" ");
 			end_index = congresos.indexOf("\n"+(obra_index+1)+" ");
 
-			if(end_index==-1){
+			if(end_index==-1 || end_index-init_index>1500){
 				flag = false;
 				end_index = init_index + 200;
 			}
