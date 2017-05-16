@@ -1,17 +1,10 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.regex.Pattern;
 
-import javax.security.auth.Subject;
 import javax.swing.JOptionPane;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.printing.PDFPageable;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.pdfbox.text.PDFTextStripperByArea;
 
@@ -23,8 +16,8 @@ public class PDFReader {
 	private final static String PUBLICATIONS_INIT_FLAG = "Publicaciones, documentos científicos y técnicos";
 	private final static String CONGRESOS_INIT_FLAG = "Trabajos presentados en congresos nacionales o internacionales";
 
-	private final static String PUBLICATIONS_END_FLAG_0  = "I+D+i y participación en comités científicos";
-	private final static String PUBLICATIONS_END_FLAG_1  = "Trabajos presentados en congresos nacionales o internacionales";
+//	private final static String PUBLICATIONS_END_FLAG_0  = "I+D+i y participación en comités científicos";
+//	private final static String PUBLICATIONS_END_FLAG_1  = "Trabajos presentados en congresos nacionales o internacionales";
 
 	public String COMPLETE_STRING;
 
@@ -125,7 +118,7 @@ public class PDFReader {
 			init_index = publicaciones.indexOf("\n"+obra_index+" ");
 			end_index = publicaciones.indexOf("\n"+(obra_index+1)+" ");
 
-			if(end_index==-1){
+			if(end_index==-1 || end_index-init_index>1500){
 				flag = false;
 				end_index = init_index + 200;
 			}

@@ -7,9 +7,10 @@ public class Congreso extends Publicacion {
 	int id;
 	String titulo, nombre, fecha;
 
-	Pattern year = Pattern.compile("[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]");
+	Pattern year = Pattern.compile("[0-9][0-9]/[0-9][0-9]/[0-9][0-9][0-9][0-9]|[0-9][0-9]/[0-9][0-9][0-9][0-9]");
 	Pattern title = Pattern.compile("Título: *\r");
 	Pattern name = Pattern.compile("Nombre del congreso: *\r");
+	Pattern pt_fecha = Pattern.compile("Fecha de celebración: * \r");
 
 
 	public Congreso(String string, int i) {
@@ -47,10 +48,19 @@ public class Congreso extends Publicacion {
 				nombre = contenido.substring(init_index,end_index);
 			else
 				nombre = "";
+			
+			if(fecha==null){
+				m = pt_fecha.matcher(contenido);
+				if(m.find()){
+					String aux = m.group();
+					fecha = aux.substring(new String("Fecha de celebración:").length());
+				}
+			}
 
 			titulo = titulo.trim().replaceAll("\r\n","");
 			nombre = nombre.trim().replaceAll("\r\n","");
 			fecha = fecha.trim().replaceAll("\r\n", "");
+		
 		}catch(Exception e){
 
 		}

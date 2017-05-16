@@ -1,41 +1,38 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
-import javax.swing.JSplitPane;
-import javax.swing.UIManager;
-import javax.swing.JDesktopPane;
-import javax.swing.JEditorPane;
-import javax.swing.JFileChooser;
-import javax.swing.JMenuBar;
-import javax.swing.JPopupMenu;
-import javax.swing.JScrollPane;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.sound.midi.SysexMessage;
-import javax.swing.JButton;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
-import java.nio.channels.ShutdownChannelGroupException;
-import java.awt.event.ActionEvent;
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.AbstractListModel;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.nio.charset.StandardCharsets;
 
+import javax.swing.JButton;
+import javax.swing.JDesktopPane;
+import javax.swing.JEditorPane;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+
+@SuppressWarnings("serial")
 public class MainWindow extends JFrame {
 
 	private JPanel contentPane;
@@ -202,7 +199,9 @@ public class MainWindow extends JFrame {
 				insertStringWhereCaret("year={ },\n");
 			}
 		});
+		Fechas.setToolTipText("Solo en año o la fecha completa en formato dd/mm/aaaa");
 		panel.add(Fechas);
+		
 		
 		JButton Paginas = new JButton("Paginas");
 		Paginas.addActionListener(new ActionListener() {
@@ -242,7 +241,7 @@ public class MainWindow extends JFrame {
 		JButton libro = new JButton("Nuevo Libro");
 		libro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				insertStringWhereCaret("%Trabajo añadido a mano\n@book{CVN_ORCID,\n}");
+				insertStringWhereCaret("\n%Trabajo añadido a mano\n@book{CVN_ORCID,\n}\n");
 			}
 		});
 		panel.add(libro);
@@ -250,7 +249,7 @@ public class MainWindow extends JFrame {
 		JButton articulo = new JButton("Nuevo articulo");
 		articulo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				insertStringWhereCaret("%Trabajo añadido a mano\n@article{CVN_ORCID,\n}");
+				insertStringWhereCaret("\n%Trabajo añadido a mano\n@article{CVN_ORCID,\n}\n");
 			}
 		});
 		panel.add(articulo);
@@ -258,15 +257,17 @@ public class MainWindow extends JFrame {
 		JButton conferencia = new JButton("Nueva conferencia");
 		conferencia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				insertStringWhereCaret("%Trabajo añadido a mano\n@conference{CVN_ORCID,\n}");
+				insertStringWhereCaret("\n%Trabajo añadido a mano\n@conference{CVN_ORCID,\n}\n");
 			}
 		});
 		panel.add(conferencia);
 		
 
 		editorPane = new JEditorPane();
+		editorPane.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 12));
 		JScrollPane scroll = new JScrollPane(editorPane);
 		splitPane.setRightComponent(scroll);
+		
 
 	}
 
@@ -298,7 +299,7 @@ public class MainWindow extends JFrame {
 			}
 
 
-			BufferedWriter output = new BufferedWriter(new FileWriter(selectedFile));
+			BufferedWriter output = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(selectedFile),StandardCharsets.UTF_8));
 			output.write(editorPane.getText());
 			output.close();
 			JOptionPane.showMessageDialog(contentPane, "Documento guardado", "INFO", JOptionPane.INFORMATION_MESSAGE);
